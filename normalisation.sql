@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS Hogwarts;
 create database hogwarts;
 use hogwarts;
 
@@ -37,17 +38,26 @@ create table if not exists registration (
     foreign key (id_student) references student(id)
     );
 
-insert into 
-	house (name) 
+ALTER TABLE student ADD CONSTRAINT unique_email UNIQUE (email);
+ALTER TABLE course ADD CONSTRAINT unique_course_name UNIQUE (name);
+ALTER TABLE house ADD CONSTRAINT unique_house_name UNIQUE (name);
+
+
+
+insert into house (name) 
 values
 	("gryffindor"),
 	("slytherin"),
 	("ravenclaw"),
 	("hufflepuff");
 
-insert into 
-	course(name)
-values 
-	("potion"),
+insert into course(name)
+values ("potion"),
 	("sortilege"),
 	("botanique");
+
+INSERT into student(email, id_house, name, year)
+VALUES ('harry.potter@hogwarts.com', 1, 'harry potter', 4);
+
+insert into registration (id_student, id_course)
+values (1,1);
