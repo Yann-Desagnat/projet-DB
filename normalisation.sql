@@ -55,3 +55,6 @@ insert into course(name)
 values ("potion"),
 	("sortilege"),
 	("botanique");
+
+INSERT into student(email, id_house, name, year)
+VALUES ('harry.potter@hogwarts.com', 1, 'harry potter', 4);
