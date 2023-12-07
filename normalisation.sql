@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS Hogwarts;
 create database hogwarts;
 use hogwarts;
 
@@ -43,17 +44,14 @@ ALTER TABLE house ADD CONSTRAINT unique_house_name UNIQUE (name);
 
 
 
-insert into 
-	house (name) 
+insert into house (name) 
 values
 	("gryffindor"),
 	("slytherin"),
 	("ravenclaw"),
 	("hufflepuff");
 
-insert into 
-	course(name)
-values 
-	("potion"),
+insert into course(name)
+values ("potion"),
 	("sortilege"),
 	("botanique");
