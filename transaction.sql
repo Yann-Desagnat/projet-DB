@@ -1,3 +1,4 @@
+-- 3) Ajout d'un étudiant et rollback
 USE hogwarts;
 
 -- Début de la transaction
@@ -15,4 +16,7 @@ ROLLBACK;
 
 -- Verification du rollback
 SELECT * FROM student WHERE name= 'harry potter';
+
+
+-- 4) 
 
