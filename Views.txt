@@ -1,0 +1,11 @@
+Q. Expliquer à quoi sert une vue en base de données. Expliquer quelle est la différence entre une vue logique et une vue matérialisée.
+
+Une vue est la sauvegarde du résultat d'une requète sous un nom. On pourra réutiliser cette vue comme une table. 
+
+Vue logique : Elle ne stocke pas les données sur l'ordinateur et effectue la requète enregistrée à chaque appel de la vue. Elle est plus longue mais demande moins de stockage.
+
+Vue matérialisée : Elle stocke les données directement sur l'ordinateur elle est donc plus rapide car elle ne recompile pas les requêtes mais elle est aussi plus lourde et prend plus d'espace.
+
+Q. Est-ce que cette requête génère une erreur ? Et si la vue house_student_count avait été une table normale, est-ce que cette requête aurait fonctionné ?
+
+La requête génère une erreur. Cela aurait fonctionné si house_student_count avait été une table normale.
