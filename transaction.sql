@@ -28,18 +28,18 @@ START TRANSACTION;
 UPDATE student
 SET id_house = 2 WHERE name = 'harry potter';
 UPDATE registration
-SET id_course = 3 WHERE id_student = 9;
+SET id_course = 3 WHERE id_student = 1;
 
 -- Affichage des données changées
 SELECT * from student WHERE name = 'harry potter';
-SELECT * FROM registration WHERE id_student = 9;
+SELECT * FROM registration WHERE id_student = 1;
 
 -- Validation des changements de la transaction
 COMMIT;
 
 -- On regarde si les nouvelles données ont bien été enragistrées 
 SELECT * from student WHERE name = 'harry potter';
-SELECT * FROM registration WHERE id_student = 9; 
+SELECT * FROM registration WHERE id_student = 1; 
 
 
 -- 5) Transaction avec erreur et rollback
