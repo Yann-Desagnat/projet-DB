@@ -37,6 +37,12 @@ create table if not exists registration (
     foreign key (id_student) references student(id)
     );
 
+ALTER TABLE student ADD CONSTRAINT unique_email UNIQUE (email);
+ALTER TABLE course ADD CONSTRAINT unique_course_name UNIQUE (name);
+ALTER TABLE house ADD CONSTRAINT unique_house_name UNIQUE (name);
+
+
+
 insert into 
 	house (name) 
 values
