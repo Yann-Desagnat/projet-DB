@@ -1,3 +1,5 @@
+USE hogwarts;
+
 -- Début de la transaction
 START TRANSACTION;
 
