@@ -36,3 +36,11 @@ create table if not exists registration (
     foreign key (id_course) references course(id),
     foreign key (id_student) references student(id)
     );
+
+insert into 
+	house (name) 
+values
+	("gryffindor"),
+	("slytherin"),
+	("ravenclaw"),
+	("hufflepuff");
