@@ -1,0 +1,9 @@
+create database project;
+use project;
+create table project(
+	student_name varchar(100) NOT NULL,
+    email varchar(100) NOT NULL,
+    registered_course varchar(50) NOT NULL,
+    year int NOT NULL,
+    house enum("Gryffondor", "Serpentard", "Serdaigle", "Poufsouffle"),
+    prefet varchar(100));
