@@ -44,3 +44,10 @@ values
 	("slytherin"),
 	("ravenclaw"),
 	("hufflepuff");
+
+insert into 
+	course(name)
+values 
+	("potion"),
+	("sortilege"),
+	("botanique");
