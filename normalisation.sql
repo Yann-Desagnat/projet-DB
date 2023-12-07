@@ -58,3 +58,6 @@ values ("potion"),
 
 INSERT into student(email, id_house, name, year)
 VALUES ('harry.potter@hogwarts.com', 1, 'harry potter', 4);
+
+insert intp registration (id_student, id_course)
+values (1,1);
