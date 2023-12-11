@@ -1,7 +1,7 @@
 INDEX 
 1) Un index en base de données accélère les recherches et optimise l'accès aux données.Il s'agit plus précisement d'une structure de données qui permet de récuperer plus facile des informations de table.
 
-3)Requête a: On a les nombre d'étudiants par cours et maisons
+3)Requête a: On a les nombre d'étudiants par cours et maison dans un ordre décroissant
 Requête b:  On a les noms et les emails des étudiants qui n'ont pas suivi de cours
-Requête c: On obtient une liste le nombre d'étudiant par maison qui ont au moins un cours (potions,sortilège,botanique)
-Requête d:  On obtient une liste qui contient chaque étudiant à chaque année d'étude avec le nombre de cours distincts auxquels cet étudiant est inscrit pour l'année. On observe une sous-requête sub qui a pour but de compter le nombre de cours distincts auxquels chaque étudiant est inscrit pour chaque année d'étude. La moyenne est obtenue au moyen de la sous-requête total. En utilisant la clause WHERE, on compare le nombre de cours (total.num_courses) avec le nombre de cours distincts (sub.num_courses) pour chaque étudiant et chaque année. Cela permet de filtrer les résultats pour inclure uniquement les étudiants dont le nombre de cours est égal à la moyenne totale pour leur année d'étude.
+Requête c: On obtient  le nombre d'étudiant par maison qui ont au moins un cours (potions,sortilège,botanique)
+Requête d: On obtient le nom, le mail, l'identifiant de chaque étudiant et l'année en comptant le nombre de cours différents auxquels chaque étudiant est inscrit pour cette année. Dans la requête (sub) permet de compter les cours distincts par étudiant et l'année tandis qu'avec total on à la moyenne totale du nombre de cours par année. Enfin, la requête filtre les résultats pour inclure uniquement les étudiants dont le nombre de cours est égal à la moyenne totale pour leur année d'étude.

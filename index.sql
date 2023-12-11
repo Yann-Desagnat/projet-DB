@@ -29,7 +29,13 @@ INSERT INTO student(email, id_house, name, year) VALUES
     ('ginny.weasley@hogwarts.com', 1, 'Ginny Weasley', 4);
 
 INSERT INTO registration(id_student, id_course) VALUES (6, 3);
+insert into registration(id_student, id_course) VALUES (6,2);
 
+INSERT INTO student(email, id_house, name, year) VALUES
+   ('nymphadora.tonks@hogwarts.com', 4, 'Nymphadora Tonks', 5);
+
+
+select * from house;
 -- 2) compter le nombre d'étudiants qui sont dans la maison "Gryffindor"
 SELECT COUNT(*) AS nb_student_gryffindor
 FROM student
@@ -123,85 +129,49 @@ SHOW PROFILES;
 SHOW PROFILE FOR QUERY 62;
 
 -- requete c 
-SELECT house.name, COUNT(*) AS num_student
+SELECT house.name AS house, course.name AS registered_course, COUNT(*) AS num_students
 FROM student
 JOIN house ON student.id_house = house.id
-WHERE EXISTS (
-    SELECT *
-    FROM registration
-    JOIN course ON registration.id_course = course.id
-    WHERE student.id = registration.id_student
-        AND course.name IN ('Potion', 'Sortilege', 'Botanique')
-)
-GROUP BY house.name;
+JOIN registration ON student.id = registration.id_student
+JOIN course ON registration.id_course = course.id
+WHERE course.name IN ('Potion', 'Sortilege', 'Botanique')
+GROUP BY house.name, course.name
+ORDER BY num_students DESC;
 
 -- mesurer le temps de la requête
 SET profiling = 1;
-SELECT house.name, COUNT(*) AS num_student
+SELECT house.name AS house, course.name AS registered_course, COUNT(*) AS num_students
 FROM student
 JOIN house ON student.id_house = house.id
-WHERE EXISTS (
-    SELECT *
-    FROM registration
-    JOIN course ON registration.id_course = course.id
-    WHERE student.id = registration.id_student
-        AND course.name IN ('Potion', 'Sortilege', 'Botanique')
-)
-GROUP BY house.name;
+JOIN registration ON student.id = registration.id_student
+JOIN course ON registration.id_course = course.id
+WHERE course.name IN ('Potion', 'Sortilege', 'Botanique')
+GROUP BY house.name, course.name
+ORDER BY num_students DESC;
 SHOW PROFILES;
 SHOW PROFILE FOR QUERY 71;
 
 -- rajouter un index, mesurer encore une fois le temps de la requête
 CREATE INDEX idx_house_id ON house(id);
 SET profiling = 1;
-SELECT house.name, COUNT(*) AS num_student
-FROM student
-JOIN house ON student.id_house = house.id
-WHERE EXISTS (
-    SELECT *
-    FROM registration
-    JOIN course ON registration.id_course = course.id
-    WHERE student.id = registration.id_student
-        AND course.name IN ('Potion', 'Sortilege', 'Botanique')
-)
-GROUP BY house.name;
+-- requete c
 SHOW PROFILES;
 SHOW PROFILE FOR QUERY 75;
 
 
 -- requete d
-SELECT s.name, s.email
-FROM student s
-JOIN ( SELECT id, year, COUNT(DISTINCT course_id) AS num_course FROM student
-GROUP BY id, year
-) AS sub ON s.id = sub.id AND s.year= sub.year JOIN (
-SELECT year, COUNT(DISTINCT course_id) AS num_course FROM student GROUP BY year
-) AS total
-ON s.year= total.year AND sub.num_course = total.num_course WHERE sub.num_course = total.num_course;
+
+             
 
 -- mesurer le temps de la requête
 SET profiling = 1;
-SELECT s.name, s.email
-FROM student s
-JOIN ( SELECT id, year, COUNT(DISTINCT course_id) AS num_course FROM student
-GROUP BY id, year
-) AS sub ON s.id = sub.id AND s.year= sub.year JOIN (
-SELECT year, COUNT(DISTINCT course_id) AS num_course FROM student GROUP BY year
-) AS total
-ON s.year= total.year AND sub.num_course = total.num_course WHERE sub.num_course = total.num_course;
+-- requête d
 SHOW PROFILES;
 SHOW PROFILE FOR QUERY 80;
 
 -- rajouter un index, mesurer encore une fois le temps de la requête
 CREATE INDEX idx_student_year_id ON student(id, year);
 SET profiling = 1;
-SELECT s.name, s.email
-FROM student s
-JOIN ( SELECT id, year, COUNT(DISTINCT course_id) AS num_course FROM student
-GROUP BY id, year
-) AS sub ON s.id = sub.id AND s.year= sub.year JOIN (
-SELECT year, COUNT(DISTINCT course_id) AS num_course FROM student GROUP BY year
-) AS total
-ON s.year= total.year AND sub.num_course = total.num_course WHERE sub.num_course = total.num_course;
+-- requête d
 SHOW PROFILES;
 SHOW PROFILE FOR QUERY 84;
