@@ -1,1 +1,20 @@
+1. Expliquer ce qu'est une transaction en base de données.
+La transaction est une séquence d'opérations mais qui est exécutée en une seule unité logique. 
+Elle est soit exécutée entièrement, soit elle ne l'est pas.
+C'est à dire que la transaction forme une seule requete mais qui en englobe plusieurs.
+
+2. Présenter les propriétés ACID des transactions
+ACID: Atomicité, cohérence, isolation, durabilité.
+
+Atomicité: Toutes les modifications apportées aux données sont effectuées comme s'il s'agit d'une seule opération. C'est-à-dire que toutes les modifications sont effectuées, ou qu'aucune d'entre elles ne l'est.
+Par exemple, dans une application qui transfère des fonds d'un compte à un autre, la propriété d'atomicité garantit que, si un débit est effectué avec succès à partir d'un compte, le crédit correspondant est effectué sur l'autre compte.
+
+Cohérence: Les données sont dans un état cohérent lorsqu'une transaction démarre et lorsqu'elle se termine.
+Par exemple, dans une application qui transfère des fonds d'un compte à un autre, la propriété de cohérence garantit que la valeur totale des fonds dans les deux comptes est la même au début et à la fin de chaque transaction.
+
+Isolation: L'état intermédiaire d'une transaction est invisible pour les autres transactions. Par conséquent, les transactions qui s'exécutent simultanément semblent être sérialisées.
+Par exemple, dans une application qui transfère des fonds d'un compte à un autre, la propriété d'isolement garantit qu'une autre transaction voit les fonds transférés dans un compte ou dans l'autre, mais pas dans les deux, ni dans aucun des deux.
+
+Durabilité: Une fois qu'une transaction a abouti, les modifications apportées aux données sont conservées et ne sont pas annulées, même en cas de défaillance du système.
+Par exemple, dans une application qui transfère des fonds d'un compte à un autre, la propriété de durabilité garantit que les modifications apportées à chaque compte ne seront pas inversées.
 
