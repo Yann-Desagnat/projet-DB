@@ -47,7 +47,7 @@ SELECT COUNT(*) AS nb_student_gryffindor
 FROM student
 WHERE id_house = (SELECT id FROM house WHERE name = 'gryffindor');
 SHOW PROFILES;
-SHOW PROFILE FOR QUERY 9;
+SHOW PROFILE FOR QUERY 4;
 
 
 -- ajouter un index sur la colonne "house_id" de la table "students" ;
@@ -160,7 +160,27 @@ SHOW PROFILE FOR QUERY 75;
 
 
 -- requete d
-
+SELECT s.name, s.email
+FROM student s
+JOIN (
+SELECT s.id, year, COUNT(DISTINCT reg.id_course) AS
+num_courses
+FROM student s
+join registration reg
+on reg.id_student = s.id
+GROUP BY s.id, year
+) AS sub
+ON s.id = sub.id AND s.year = sub.year
+JOIN (
+SELECT year, COUNT(DISTINCT id_course) AS num_courses
+FROM student s
+join registration reg
+on s.id = reg.id_student
+GROUP BY year
+) AS total
+ON s.year = total.year AND sub.num_courses =
+total.num_courses
+WHERE sub.num_courses = total.num_courses;
              
 
 -- mesurer le temps de la requête
@@ -175,3 +195,6 @@ SET profiling = 1;
 -- requête d
 SHOW PROFILES;
 SHOW PROFILE FOR QUERY 84;
+
+
+
